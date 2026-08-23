@@ -77,23 +77,50 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Dom Thiago Barbearia | Barbearia e Escola de Barbeiros em Várzea Grande" },
+      {
+        name: "description",
+        content:
+          "Dom Thiago Barbearia em Várzea Grande–MT. Cortes, barba, barbeado com lâmina e toalha quente. Conheça também nossa Escola de Formação de Novos Barbeiros.",
+      },
+      { name: "author", content: "Dom Thiago Barbearia" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Dom Thiago Barbearia" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HairSalon",
+          name: "Dom Thiago Barbearia 1 e Escola de Formação de Novos Barbeiros",
+          image: "https://www.instagram.com/domthiagobarbearia1/",
+          telephone: "+5565984741270",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Rua Antônio Barbosa Ferreira",
+            addressLocality: "Várzea Grande",
+            addressRegion: "MT",
+            postalCode: "78148-596",
+            addressCountry: "BR",
+          },
+          sameAs: ["https://www.instagram.com/domthiagobarbearia1/"],
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
