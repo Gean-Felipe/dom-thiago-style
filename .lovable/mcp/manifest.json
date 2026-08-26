@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "sdk_version": "0.28.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://owchbiwmwtkcsazukpio.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "dom-thiago-style",
+      "version": "0.1.0",
+      "title": "Dom Thiago Style"
+    },
+    "tools": [
+      {
+        "name": "informacoes_barbearia",
+        "title": "Informações da barbearia",
+        "description": "Retorna as informações públicas da Dom Thiago Barbearia 1: endereço, WhatsApp, Instagram e a escola de formação de novos barbeiros.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "listar_servicos",
+        "title": "Listar serviços",
+        "description": "Lista os serviços oferecidos pela Dom Thiago Barbearia. Não inclui preços, que não são divulgados.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "criar_solicitacao",
+        "title": "Criar solicitação",
+        "description": "Registra uma solicitação de agendamento na barbearia ou de interesse na escola de formação, vinculada ao usuário conectado. A confirmação final é feita pela barbearia via WhatsApp.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "enum": [
+                "agendamento",
+                "escola"
+              ],
+              "description": "Tipo da solicitação."
+            },
+            "nome": {
+              "type": "string",
+              "description": "Nome da pessoa."
+            },
+            "telefone": {
+              "description": "Telefone/WhatsApp para contato.",
+              "type": "string"
+            },
+            "servico": {
+              "description": "Serviço desejado (para agendamento).",
+              "type": "string"
+            },
+            "preferencia": {
+              "description": "Data e horário de preferência, em texto livre.",
+              "type": "string"
+            },
+            "observacoes": {
+              "description": "Observações adicionais.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "tipo",
+            "nome"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "listar_solicitacoes",
+        "title": "Listar minhas solicitações",
+        "description": "Lista as solicitações de agendamento e de escola criadas pelo usuário conectado.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "cancelar_solicitacao",
+        "title": "Cancelar solicitação",
+        "description": "Cancela (apaga) uma solicitação do usuário conectado, informando o id da solicitação.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Id da solicitação a cancelar."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
