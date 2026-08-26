@@ -19,5 +19,11 @@ export default defineMcp({
     issuer: `https://${projectRef}.supabase.co/auth/v1`,
     acceptedAudiences: "authenticated",
   }),
-  tools: [informacoesBarbearia, listarServicos, criarSolicitacao, listarSolicitacoes, cancelarSolicitacao],
+  tools: [
+    informacoesBarbearia,
+    listarServicos,
+    criarSolicitacao,
+    listarSolicitacoes,
+    cancelarSolicitacao,
+  ] as unknown as AnyTool[],
 });
